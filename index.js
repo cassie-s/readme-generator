@@ -107,7 +107,18 @@ const promptUser = () => {
             default: true
         },
         {
-
+            type: 'input'
+            name: 'tests'
+            message: 'Provide a way to test this application. (Required)',
+            validate: testInput => {
+                if (testInput) {
+                  return true;
+                } else {
+                  console.log('Provide a way to test this application!');
+                  return false;
+                }
+              }
+            },
         }
     ]);
 };
