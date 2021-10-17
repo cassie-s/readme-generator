@@ -32,7 +32,9 @@
 
 
   ## Tests
-  Sample answers were using until a README.md file was successfully generated. The file can be modified if the input was not desired.
+  Sample answers were using until a README.md file was successfully generated. The file can be modified if the input was not desired.  
+  
+  [Screencastify Link](https://watch.screencastify.com/v/KjIjtHAJbzrFs045JFxG)
 
 
   ## Questions

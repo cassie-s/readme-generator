@@ -1,7 +1,7 @@
-# readme-generator
+# project
   ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
   ## Description
-  Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
+  here is a description
 
   
   ## Table of Contents
@@ -15,11 +15,11 @@
 
 
   ## Installation
-  Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
+  use install node and inquirer
 
 
   ## Usage
-  Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.  
+  making a readme file  
   ![Screenshot of Application](screenshot.png)
 
   ## License
@@ -27,8 +27,8 @@
   This project uses  the [MIT](https://opensource.org/licenses/MIT) license.
 
   ## Contributing
-  Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.  
-  [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](code_of_conduct.md)
+  this follows the covenant of contribution  
+
 
 
   ## Tests
@@ -43,6 +43,6 @@
 
   
   ## Credits
-  Cassie Simpson
+  user
   
 
