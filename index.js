@@ -117,7 +117,7 @@ const questions = [
         },
         {
             type: 'input',
-            name: 'credit',
+            name: 'credits',
             message: 'List credits:',
             when: ({ confirmCredits }) => confirmCredits
         },

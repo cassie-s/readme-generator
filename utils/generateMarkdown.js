@@ -14,7 +14,6 @@ function renderLicenseBadge(license) {
   }
 }
 
-
 // TODO: Create a function that returns the license link
 // If there is no license, return an empty string
   function renderLicenseLink(license) {
@@ -42,40 +41,59 @@ function renderLicenseSection(license) {
   return ''
 }
 
+// Create the credits section
+const generateCredits = creditsText => {
+  if (!creditsText) {
+    return '';
+  }
+
+  return `
+  ## Credits
+  ${creditsText}
+  `;
+};
+
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
   return `# ${data.title}
   ## Description
   ${data.description}
+
   
   ## Table of Contents
-  *[Installation](#installation)
-  *[Usage](#usage)
-  *[License](#license)
-  *[Contributing](#contributing)
-  *[Tests](#tests)
-  *[GitHub](#github)
-  *[Credits](#credits)
+  * [Installation](#installation)
+  * [Usage](#usage)
+  * [License](#license)
+  * [Contributing](#contributing)
+  * [Tests](#tests)
+  * [GitHub](#github)
+  * [Credits](#credits)
+
 
   ## Installation
   ${data.installation}
+
 
   ## Usage
   ${data.usage}
 
   ${renderLicenseSection(data.license)}
+  ${renderLicenseBadge(data.license)}
+
 
   ## Contributing
   ${data.contributing}
 
+
   ## Tests
   ${data.test}
+
 
   ## GitHub Repo
   [${data.github}](https://github.com/${data.github}/)
 
-  ## Credits
-  ${data.credits}
+  
+  ${generateCredits(data.credits)}
 
 `;
 }
