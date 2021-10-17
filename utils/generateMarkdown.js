@@ -1,4 +1,4 @@
-// TODO: Create a function that returns a license badge based on which license is passed in
+// Function that returns a license badge based on which license is passed in
 // If there is no license, return an empty string
 function renderLicenseBadge(license) {
   if (license == "MIT") {
@@ -14,7 +14,7 @@ function renderLicenseBadge(license) {
   }
 }
 
-// TODO: Create a function that returns the license link
+// Function that returns the license link
 // If there is no license, return an empty string
   function renderLicenseLink(license) {
     if (license == "MIT") {
@@ -30,13 +30,13 @@ function renderLicenseBadge(license) {
     }
   }
 
-// TODO: Create a function that returns the license section of README
+// Function that returns the license section of README
 // If there is no license, return an empty string
 function renderLicenseSection(license) {
   if (license !== 'None') {
     return `## License
     
-  This project is licensed under [${license}]` + renderLicenseLink(license)
+  This project is uses  the [${license}]` + renderLicenseLink(license) + ' license.'
   }
   return ''
 }
@@ -53,7 +53,7 @@ const generateCredits = creditsText => {
   `;
 };
 
-// TODO: Create a function to generate markdown for README
+// Create a function to generate markdown for README
 function generateMarkdown(data) {
   return `# ${data.title}
   ## Description
@@ -75,9 +75,10 @@ function generateMarkdown(data) {
 
 
   ## Usage
-  ${data.usage}
+  ${data.usage}  
+  ![Screenshot of Application](screenshot.png)
 
-  ${renderLicenseSection(data.license)}
+  ${renderLicenseSection(data.license)}  
   ${renderLicenseBadge(data.license)}
 
 
@@ -92,7 +93,7 @@ function generateMarkdown(data) {
   ## GitHub Repo
   [${data.github}](https://github.com/${data.github}/)
 
-  
+
   ${generateCredits(data.credits)}
 
 `;

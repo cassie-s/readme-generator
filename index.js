@@ -1,10 +1,10 @@
-// TODO: Include packages needed for this application
+// Packages needed for this application
 const inquirer = require('inquirer');
 const fs = require('fs');
 const generateMarkdown = require("./utils/generateMarkdown");
 
 let questionData = {};
-// TODO: Create an array of questions for user input
+// Array of questions for user input
 const questions = [
         {
             type: 'input',
@@ -123,11 +123,12 @@ const questions = [
         },
     ];
 
+// Function that prompts user for input using "inquirer"
 const getProjectData = questions => {
     console.log(`
-====================
-Generate a README.md
-====================
+    ====================
+    Generate a README.md
+    ====================
     `);
 
     inquirer.prompt(questions)
@@ -137,18 +138,7 @@ Generate a README.md
         });
 };
 
-// // Function to list credits if applicable
-// const promptCredits = creditsData => {
-//     console.log(`
-// ==============
-// Add a Credits
-// ==============
-//     `);
-
-//     // If there's no 'credits' array property
-// }
-
-// TODO: Create a function to write README file
+// Function to write README file
 const writeToFile = (fileName, data) => {
     fs.writeFile(fileName, data, function(err) {
         if (err) {
@@ -159,7 +149,7 @@ const writeToFile = (fileName, data) => {
     });
 };
 
-// TODO: Create a function to initialize app
+// Function to initialize app
 const init = () => {
     getProjectData(questions);
 }
