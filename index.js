@@ -1,10 +1,11 @@
 // TODO: Include packages needed for this application
 const inquirer = require('inquirer');
 const fs = require('fs');
+const generateMarkdown = require("./utils/generateMarkdown");
 
+let questionData = {};
 // TODO: Create an array of questions for user input
-const promptUser = () => {
-    return inquirer.prompt([
+const questions = [
         {
             type: 'input',
             name: 'title',
@@ -32,19 +33,6 @@ const promptUser = () => {
             }
         },
         {
-            type: 'confirm',
-            name: 'confirmToc',
-            message: 'Would you like to include a Table of Contents?',
-            default: true
-        },
-        {
-            type: 'checkbox',
-            name: 'toc',
-            message: 'Which sections would you like to include in the Table of Contents?',
-            choices: ['Installation', 'Usage', 'Credits', 'License']
-            // when: ({ confirmToc }) => confirmToc
-        },
-        {
             type: 'input',
             name: 'installation',
             message: 'Provide a step-by-step description of how to get the development environment running. (Required)',
@@ -52,7 +40,7 @@ const promptUser = () => {
                 if (installationInput) {
                     return true;
                 } else {
-                    console.log('Please enter a description of your project!');
+                    console.log('Please provide installation instructions!');
                     return false;
                 }
             }
@@ -60,7 +48,7 @@ const promptUser = () => {
         {
             type: 'input',
             name: 'usage',
-            message: 'Provide instructions and examples for use. Include screenshots as needed.',
+            message: 'Provide instructions and examples for use.',
             validate: usageInput => {
                 if (usageInput) {
                     return true;
@@ -71,65 +59,111 @@ const promptUser = () => {
             }
         },
         {
+            type: "list",
+            name: "license",
+            message: "Please select your license:",
+            choices: 
+            ['MIT', 
+            'Apache 2.0', 
+            'GNU GPL v3', 
+            'Mozilla Public License 2.0', 
+            'No License']
+        },
+        {
+            type: 'input',
+            name: 'contributing',
+            message: 'Enter contribution guidelines for this project',
+            validate: contributingInput => {
+                if (contributingInput) {
+                    return true;
+                }
+                else {
+                    console.log("Please enter contribution guidelines for this project!");
+                    return false;
+                }
+            }
+        },
+        {
+            type: 'input',
+            name: 'tests',
+            message: 'Provide a way to test this application. (Required)',
+            validate: testInput => {
+                if (testInput) {
+                    return true;
+                } else {
+                    console.log('You must provide a way to test this application!');
+                    return false;
+                }
+            }
+        },
+        {
+            type: 'input',
+            name: 'github',
+            message: 'Provide a link to your GitHub repo: (Required)',
+            validate: githubInput => {
+                if (githubInput) {
+                    return true;
+                } else {
+                    console.log('You must provide a link to your GitHub repo!');
+                    return false;
+                }
+            }
+        },
+        {
             type: 'confirm',
             name: 'confirmCredits',
-            message: 'Do you have any credits to list?',
+            message: 'Do you have any credits to include?',
             default: true
         },
         {
             type: 'input',
             name: 'credit',
-            message: 'Enter credits:',
-            when: ({ confirmCredit }) => confirmCredit
-        }
-        {
-            type: 'checkbox',
-            name: 'license',
-            message: 'Please choose a license: (Required)',
-            choices: ['MIT', 'GPLv2']
+            message: 'List credits:',
+            when: ({ confirmCredits }) => confirmCredits
         },
-        {
-            type: 'confirm',
-            name: 'confirmBadges',
-            message: 'Would you like to include any badges?',
-            default: true
-        },
-        {
-            type: 'input',
-            name: 'badges',
-            message: 'Enter badges:',
-            when: ({ confirmBadges }) => confirmBadges
-        },
-        {
-            type: 'confirm',
-            name: 'confirmContributer',
-            message: 'Would you like to include the industry standard for contributions: The Contribuer Covenant Code of Conduct?',
-            default: true
-        },
-        {
-            type: 'input'
-            name: 'tests'
-            message: 'Provide a way to test this application. (Required)',
-            validate: testInput => {
-                if (testInput) {
-                  return true;
-                } else {
-                  console.log('Provide a way to test this application!');
-                  return false;
-                }
-              }
-            },
-        }
-    ]);
+    ];
+
+const getProjectData = questions => {
+    console.log(`
+====================
+Generate a README.md
+====================
+    `);
+
+    inquirer.prompt(questions)
+        .then(answers => {
+            questionData = generateMarkdown(answers);
+            writeToFile("./dist/README.MD", questionData);
+        });
 };
 
+// // Function to list credits if applicable
+// const promptCredits = creditsData => {
+//     console.log(`
+// ==============
+// Add a Credits
+// ==============
+//     `);
+
+//     // If there's no 'credits' array property
+// }
+
 // TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
+const writeToFile = (fileName, data) => {
+    fs.writeFile(fileName, data, function(err) {
+        if (err) {
+            return console.log("ERROR: " + err);
+        }
+
+        console.log("Done");
+    });
+};
 
 // TODO: Create a function to initialize app
-function init() {}
-
+const init = () => {
+    getProjectData(questions);
+}
 // Function call to initialize app
 init();
 
-promptUser();
+
