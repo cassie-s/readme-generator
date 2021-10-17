@@ -110,6 +110,32 @@ const questions = [
             }
         },
         {
+            type: 'input',
+            name: 'email',
+            message: 'Provide your email address (Required)',
+            validate: emailInput => {
+                if (emailInput) {
+                    return true;
+                } else {
+                    console.log('Please provide an email address!');
+                    return false;
+                }
+            }
+        },
+        {
+            type: 'input',
+            name: 'github',
+            message: 'Provide your GitHub Username (Required)',
+            validate: githubInput => {
+                if (githubInput) {
+                    return true;
+                } else {
+                    console.log('Please provide your GitHub Username!');
+                    return false;
+                }
+            }
+        },
+        {
             type: 'confirm',
             name: 'confirmCredits',
             message: 'Do you have any credits to include?',

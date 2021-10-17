@@ -36,7 +36,7 @@ function renderLicenseSection(license) {
   if (license !== 'None') {
     return `## License
     
-  This project is uses  the [${license}]` + renderLicenseLink(license) + ' license.'
+  This project uses  the [${license}]` + renderLicenseLink(license) + ' license.'
   }
   return ''
 }
@@ -56,6 +56,7 @@ const generateCredits = creditsText => {
 // Create a function to generate markdown for README
 function generateMarkdown(data) {
   return `# ${data.title}
+  ${renderLicenseBadge(data.license)}
   ## Description
   ${data.description}
 
@@ -78,19 +79,20 @@ function generateMarkdown(data) {
   ${data.usage}  
   ![Screenshot of Application](screenshot.png)
 
-  ${renderLicenseSection(data.license)}  
-  ${renderLicenseBadge(data.license)}
-
+  ${renderLicenseSection(data.license)}
 
   ## Contributing
-  ${data.contributing}
+  ${data.contributing}  
+  [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](code_of_conduct.md)
 
 
   ## Tests
   ${data.test}
 
 
-  ## GitHub Repo
+  ## Questions
+  Reach out via email or GitHub.  
+  ${data.email}  
   [${data.github}](https://github.com/${data.github}/)
 
 
